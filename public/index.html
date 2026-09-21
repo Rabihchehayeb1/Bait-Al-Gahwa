@@ -124,11 +124,6 @@
     -webkit-mask-image: radial-gradient(60% 70% at 30% 40%, black, transparent 85%);
             mask-image: radial-gradient(60% 70% at 30% 40%, black, transparent 85%);
   }
-  .landing-pot{
-    position:absolute; right:clamp(-40px,-2vw,40px); bottom:-40px;
-    width:min(46vw,520px); opacity:0.9; z-index:-1;
-    filter:drop-shadow(0 40px 60px rgba(0,0,0,0.55));
-  }
   .landing-inner{ max-width:640px; }
   .eyebrow{
     font-family:'Reem Kufi',sans-serif; font-size:0.72rem;
@@ -169,7 +164,7 @@
   .side{
     position:relative; overflow:hidden; isolation:isolate;
     padding:clamp(24px,4vw,48px);
-    display:flex; flex-direction:column; justify-content:flex-end;
+    display:flex; flex-direction:column; justify-content:center;
     border-right:1px solid var(--panel-line);
     min-height:220px;
   }
@@ -178,78 +173,9 @@
   .side::before{
     content:""; position:absolute; inset:0; z-index:-2;
     background-color:var(--ink-2);
-    background-image: linear-gradient(180deg, rgba(18,14,10,0.55) 0%, rgba(18,14,10,0.72) 55%, rgba(18,14,10,0.93) 100%);
+    background-image: linear-gradient(180deg, rgba(18,14,10,0.25) 0%, rgba(18,14,10,0.7) 100%);
     background-size:cover; background-position:center; background-repeat:no-repeat;
-    transition:background-image .4s ease;
   }
-  /* One reference photo per arc of the journey, so the left panel's backdrop
-     changes as the applicant moves through the form. All three are free-to-use
-     Unsplash-licensed photography (not the exact client campaign images). */
-  .side[data-arc="0"]::before{
-    background-image:
-      linear-gradient(180deg, rgba(18,14,10,0.55) 0%, rgba(18,14,10,0.72) 55%, rgba(18,14,10,0.93) 100%),
-      url('https://images.unsplash.com/photo-1690983323458-ec4a54fc9552?fm=jpg&q=70&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0');
-    background-size:cover, cover; background-position:center, center; background-repeat:no-repeat, no-repeat;
-  }
-  .side[data-arc="1"]::before,
-  .side[data-arc="3"]::before{
-    background-image:
-      linear-gradient(180deg, rgba(18,14,10,0.55) 0%, rgba(18,14,10,0.72) 55%, rgba(18,14,10,0.93) 100%),
-      url('https://images.unsplash.com/photo-1618597778480-8c5d3f2d3ba8?fm=jpg&q=70&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0');
-    background-size:cover, cover; background-position:center, center; background-repeat:no-repeat, no-repeat;
-  }
-  .side[data-arc="2"]::before{
-    background-image:
-      linear-gradient(180deg, rgba(18,14,10,0.55) 0%, rgba(18,14,10,0.72) 55%, rgba(18,14,10,0.93) 100%),
-      url('https://images.unsplash.com/photo-1753837787691-84a06d715d24?fm=jpg&q=70&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0');
-    background-size:cover, cover; background-position:center, center; background-repeat:no-repeat, no-repeat;
-  }
-  .side .glow{
-    position:absolute; z-index:-1; border-radius:50%;
-    background:radial-gradient(circle, rgba(201,151,77,0.35), transparent 70%);
-    filter:blur(6px);
-    animation: flicker 6s ease-in-out infinite;
-  }
-  .side .glow.one{ width:340px; height:340px; top:-60px; right:-80px; }
-  .side .glow.two{ width:260px; height:260px; bottom:-100px; left:-60px; background:radial-gradient(circle, rgba(143,161,118,0.25), transparent 70%); animation-delay:-3s; }
-  @keyframes flicker{ 0%,100%{ opacity:0.65; } 50%{ opacity:1; } }
-  @media (prefers-reduced-motion: reduce){ .side .glow{ animation:none; } }
-
-  .side .ember{
-    position:absolute; z-index:-1; width:3px; height:3px; border-radius:50%;
-    background:var(--brass-hi); filter:blur(1px); opacity:0;
-    animation-name:emberFloat; animation-timing-function:ease-in; animation-iteration-count:infinite;
-  }
-  @keyframes emberFloat{
-    0%{ opacity:0; transform:translate(0,0); }
-    12%{ opacity:0.75; }
-    85%{ opacity:0.15; }
-    100%{ opacity:0; transform:translate(10px,-150px); }
-  }
-  @media (prefers-reduced-motion: reduce){ .side .ember{ animation:none; display:none; } }
-
-  .side-icon-wrap{ position:relative; width:min(150px,34%); margin-bottom:28px; }
-  .side-icon{ width:100%; color:var(--brass); opacity:0.85; display:block; animation:potBreathe 6s ease-in-out infinite; }
-  @keyframes potBreathe{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-4px); } }
-  @media (prefers-reduced-motion: reduce){ .side-icon{ animation:none; } }
-
-  .steam{ position:absolute; left:64%; top:-4%; width:36%; height:60%; pointer-events:none; }
-  .steam span{
-    position:absolute; bottom:0; left:0; width:5px; height:24px; border-radius:50%;
-    background:linear-gradient(to top, rgba(236,224,203,0.6), rgba(236,224,203,0));
-    filter:blur(2px); opacity:0;
-    animation-name:steamRise; animation-timing-function:ease-in; animation-iteration-count:infinite;
-  }
-  .steam span:nth-child(1){ left:0; animation-duration:4.2s; animation-delay:0s; }
-  .steam span:nth-child(2){ left:9px; height:20px; animation-duration:4.8s; animation-delay:1.4s; }
-  .steam span:nth-child(3){ left:18px; height:16px; animation-duration:4s; animation-delay:2.8s; }
-  @keyframes steamRise{
-    0%{ opacity:0; transform:translate(0,0) scale(1); }
-    18%{ opacity:0.55; }
-    55%{ transform:translate(5px,-24px) scale(1.3); opacity:0.3; }
-    100%{ transform:translate(-4px,-48px) scale(1.6); opacity:0; }
-  }
-  @media (prefers-reduced-motion: reduce){ .steam span{ animation:none; opacity:0; } }
 
   .side-copy.fade-enter{ animation-duration:.5s; }
   .side-arc{ font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--brass-hi); margin-bottom:10px; font-family:'Reem Kufi',sans-serif; }
@@ -411,14 +337,6 @@
 
   .sr-only{ position:absolute; width:1px;height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
 
-  /* card watermark: quiet dallah presence throughout the wizard */
-  .card{ overflow:hidden; }
-  .card .watermark{
-    position:absolute; right:-18px; bottom:-18px; width:150px; color:var(--panel-line);
-    opacity:0.6; pointer-events:none; z-index:0;
-  }
-  .card > *:not(.watermark){ position:relative; z-index:1; }
-
   /* ---------------- confirm modal ---------------- */
   .confirm-overlay{
     position:fixed; inset:0; z-index:998; background:rgba(10,6,4,0.72);
@@ -431,67 +349,6 @@
   .confirm-modal h3{ font-size:1.3rem; margin-bottom:10px; }
   .confirm-modal p{ color:var(--muted); font-size:0.92rem; line-height:1.55; }
   .gate-modal{ max-width:400px; }
-  .gate-modal-icon{ width:44px; color:var(--brass); margin-bottom:14px; opacity:0.9; }
-  .gate-modal-icon svg{ width:100%; height:auto; display:block; }
-
-  /* ---------------- pour transition ---------------- */
-  .pour-overlay{
-    position:fixed; inset:0; z-index:999; background:var(--ink);
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px;
-    opacity:0; transition:opacity .32s ease;
-  }
-  .pour-overlay.show{ opacity:1; }
-  .pour-overlay.hide{ opacity:0; }
-  .pour-scene{ position:relative; width:150px; height:200px; }
-  .pour-dallah{
-    position:absolute; top:0; left:50%; width:78px; color:var(--brass-hi);
-    transform-origin:72% 42%;
-    transform:translateX(-50%) rotate(0deg);
-  }
-  .pour-dallah svg, .pour-finjan svg, .side-icon svg, .landing-pot svg{ width:100%; height:auto; display:block; }
-  .pour-overlay.show .pour-dallah{ animation:pourTilt 1.5s ease-in-out both; }
-  .pour-stream{
-    position:absolute; top:78px; left:59%; width:3px; height:0; border-radius:2px;
-    background:linear-gradient(var(--brass-hi), var(--brass));
-  }
-  .pour-overlay.show .pour-stream{ animation:pourStream 1.5s ease-in-out both; }
-  .pour-finjan{
-    position:absolute; bottom:6px; left:50%; width:64px; color:var(--brass);
-    transform:translateX(-50%);
-  }
-  .pour-liquid{
-    position:absolute; left:24%; right:24%; bottom:32%; height:0;
-    background:var(--brass); border-radius:1px 1px 3px 3px;
-  }
-  .pour-overlay.show .pour-liquid{ animation:pourFill 1.5s ease-in-out both; }
-  .pour-caption{ font-size:0.74rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); opacity:0; }
-  .pour-overlay.show .pour-caption{ animation:pourCaption 1.5s ease both; }
-
-  @keyframes pourTilt{
-    0%, 12%{ transform:translateX(-50%) rotate(0deg); }
-    42%, 68%{ transform:translateX(-50%) rotate(28deg); }
-    92%,100%{ transform:translateX(-50%) rotate(0deg); }
-  }
-  @keyframes pourStream{
-    0%, 30%{ height:0; opacity:0; }
-    38%{ opacity:1; }
-    65%{ height:64px; opacity:1; }
-    82%{ height:64px; opacity:0; }
-    100%{ height:0; opacity:0; }
-  }
-  @keyframes pourFill{
-    0%, 40%{ height:0; }
-    88%, 100%{ height:60%; }
-  }
-  @keyframes pourCaption{
-    0%, 15%{ opacity:0; transform:translateY(4px); }
-    30%, 85%{ opacity:1; transform:translateY(0); }
-    100%{ opacity:0; }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .pour-overlay.show .pour-dallah, .pour-overlay.show .pour-stream,
-    .pour-overlay.show .pour-liquid, .pour-overlay.show .pour-caption{ animation:none; }
-  }
 </style>
 
 <div id="app"></div>
@@ -545,9 +402,6 @@
     { arc:1, eyebrow:"Your time", type:"multi", key:"availability",
       q:"When are you available?", help:"Choose all that apply.",
       options:["Evenings","Weekends","Events"] },
-    { arc:1, eyebrow:"Your time", type:"single", key:"hours",
-      q:"How many hours can you give each week?", help:"",
-      options:["Under 5 hours","5–10 hours","11–20 hours","More than 20 hours"] },
     { arc:1, eyebrow:"Getting around", type:"single", key:"transport",
       q:"Do you have your own transportation?", help:"",
       options:["Yes","No"] },
@@ -557,12 +411,6 @@
     { arc:2, eyebrow:"Your gahwa story", type:"single", key:"training",
       q:"Have you received hospitality or coffee training?", help:"",
       options:["Yes","No"] },
-    { arc:2, eyebrow:"Your voice", type:"multi", key:"languages",
-      q:"Which languages do you speak?", help:"Choose all that apply.",
-      options:["Arabic","English","Hindi","Urdu","French","Other"] },
-    { arc:2, eyebrow:"Your background", type:"single", key:"education",
-      q:"What is your highest level of education?", help:"",
-      options:["High School","Diploma","Bachelor's Degree","Master's Degree","Doctorate","Other"] },
     { arc:2, eyebrow:"Right now", type:"single", key:"status",
       q:"What best describes your current status?", help:"",
       options:["Student","Employed full-time","Employed part-time","Self-employed","Looking for work"] },
@@ -585,69 +433,54 @@
 
   function loadState(){
     try{
-      var raw = localStorage.getItem("gahwa-journey-v1");
+      var raw = localStorage.getItem("gahwa-journey-v2");
+      var legacy = false;
+      if(!raw){
+        raw = localStorage.getItem("gahwa-journey-v1");
+        legacy = !!raw;
+      }
       if(raw){
         var parsed = JSON.parse(raw);
         if(parsed && typeof parsed === "object"){
           state.values = parsed.values || {};
           state.step = typeof parsed.step === "number" ? parsed.step : -1;
+          delete state.values.hours;
+          delete state.values.languages;
+          delete state.values.education;
+          if(legacy && state.step >= 0){
+            [9,13,14].forEach(function(removedIndex){
+              if(removedIndex < parsed.step) state.step--;
+            });
+            state.step = Math.min(state.step, STEPS.length - 1);
+            saveState();
+            localStorage.removeItem("gahwa-journey-v1");
+          }
         }
       }
     }catch(e){ /* storage unavailable — continue with defaults */ }
   }
   function saveState(){
     try{
-      localStorage.setItem("gahwa-journey-v1", JSON.stringify({ values: state.values, step: state.step }));
+      localStorage.setItem("gahwa-journey-v2", JSON.stringify({ values: state.values, step: state.step }));
     }catch(e){ /* ignore */ }
   }
   function clearState(){
-    try{ localStorage.removeItem("gahwa-journey-v1"); }catch(e){}
+    try{
+      localStorage.removeItem("gahwa-journey-v1");
+      localStorage.removeItem("gahwa-journey-v2");
+    }catch(e){}
   }
 
   loadState();
 
   /* ---------------- icons ---------------- */
-  var ICON_DALLAH = '<svg viewBox="0 0 145 140" xmlns="http://www.w3.org/2000/svg">' +
-    '<path d="M74,20 Q78,26 68,33 Q96,40 90,54 Q94,74 87,92 Q86,108 80,122 Q84,126 82,131 L38,131 Q36,126 40,122 Q34,108 33,92 Q26,74 30,54 Q24,40 52,33 Q42,26 46,20 Q60,6 74,20 Z" fill="currentColor"/>' +
-    '<circle cx="60" cy="10" r="5" fill="currentColor"/>' +
-    '<path d="M88,50 C108,46 122,30 132,8 C134,4 130,3 127,7 C118,22 104,38 92,48 Z" fill="currentColor"/>' +
-    '<path d="M32,60 C10,58 6,86 24,94" stroke="currentColor" stroke-width="7" stroke-linecap="round" fill="none"/>' +
-    '</svg>';
-
   var ICON_ARROW = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8h11.5M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var ICON_BACK = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 8H2.5M7 3.5 2.5 8 7 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var ICON_CHECK = '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12.5 9.5 18 20 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var ICON_DOC = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l4 4v14H6z" stroke-linejoin="round"/><path d="M15 3v4h4" stroke-linejoin="round"/></svg>';
   var ICON_CAM = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M8 7 10 4h4l2 3"/><circle cx="12" cy="13.5" r="3.5"/></svg>';
   var ICON_FILM = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M7 5v14M17 5v14M3 9.5h4M3 14.5h4M17 9.5h4M17 14.5h4"/></svg>';
-  var ICON_FINJAN = '<svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
-    '<ellipse cx="40" cy="52" rx="32" ry="6"/>' +
-    '<path d="M14 10 H66 L58 42 H22 Z"/>' +
-    '<line x1="19" y1="17" x2="61" y2="17" opacity="0.55"/>' +
-    '</svg>';
-
   var app = document.getElementById("app");
-
-  /* ---------------- pour transition ---------------- */
-  function playPourTransition(done){
-    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if(reduce){ done(); return; }
-    var overlay = document.createElement("div");
-    overlay.className = "pour-overlay";
-    overlay.innerHTML =
-      '<div class="pour-scene">' +
-        '<div class="pour-dallah">' + ICON_DALLAH + '</div>' +
-        '<div class="pour-stream"></div>' +
-        '<div class="pour-finjan">' + ICON_FINJAN + '<div class="pour-liquid"></div></div>' +
-      '</div>' +
-      '<p class="pour-caption kufi">Pouring your journey&hellip;</p>';
-    document.body.appendChild(overlay);
-    requestAnimationFrame(function(){ overlay.classList.add("show"); });
-    setTimeout(function(){
-      overlay.classList.add("hide");
-      setTimeout(function(){ overlay.remove(); done(); }, 320);
-    }, 1550);
-  }
 
   /* ---------------- validation ---------------- */
   function isValidPhone(v){
@@ -753,9 +586,8 @@
       '<div id="app-inner" style="display:flex;flex-direction:column;min-height:100vh;">' +
       headerHtml(false) +
       '<main class="stage"><section class="landing fade-enter">' +
-        '<div class="landing-pot">' + ICON_DALLAH.replace('<svg ', '<svg style="width:100%;height:auto;" ') + '</div>' +
         '<div class="landing-inner">' +
-          '<div class="eyebrow">20 moments &middot; about 5 minutes</div>' +
+          '<div class="eyebrow">17 moments &middot; about 5 minutes</div>' +
           '<h1>One question.<br><em>One cup</em> at a time.</h1>' +
           '<p class="lede">Apply to represent Emirati coffee culture and hospitality at exhibitions and events across Abu Dhabi.</p>' +
           '<button class="cta" id="begin-btn">' + (hasSaved ? "Continue your application" : "Begin your application") + ICON_ARROW + '</button>' +
@@ -765,11 +597,9 @@
       '</div>';
 
     document.getElementById("begin-btn").addEventListener("click", function(){
-      playPourTransition(function(){
-        state.step = Math.max(state.step, 0);
-        saveState();
-        render();
-      });
+      state.step = Math.max(state.step, 0);
+      saveState();
+      render();
     });
     var restart = document.getElementById("restart-btn");
     if(restart){
@@ -800,7 +630,6 @@
         '<div class="content">' +
           progressHtml() +
           '<div class="card-area"><div class="card fade-enter" id="card">' +
-            '<div class="watermark">' + ICON_DALLAH + '</div>' +
             cardBodyHtml(step) +
           '</div></div>' +
         '</div>' +
@@ -844,26 +673,8 @@
     document.getElementById("confirm-ok").addEventListener("click", function(){ close(); onConfirm(); });
   }
 
-  var EMBER_SPECS = [
-    {l:8,  b:10, dur:6.5, delay:0},
-    {l:24, b:4,  dur:7.5, delay:1.6},
-    {l:42, b:14, dur:6,   delay:3.1},
-    {l:60, b:2,  dur:8,   delay:0.9},
-    {l:76, b:8,  dur:6.8, delay:4.2},
-    {l:33, b:6,  dur:7.2, delay:2.4}
-  ];
-
   function sideHtml(step, arc){
-    var embers = EMBER_SPECS.map(function(e){
-      return '<span class="ember" style="left:' + e.l + '%;bottom:' + e.b + '%;animation-duration:' + e.dur + 's;animation-delay:' + e.delay + 's;"></span>';
-    }).join("");
     return '<aside class="side" data-arc="' + step.arc + '">' +
-      '<span class="glow one"></span><span class="glow two"></span>' +
-      embers +
-      '<div class="side-icon-wrap">' +
-        '<div class="side-icon">' + ICON_DALLAH + '</div>' +
-        '<span class="steam"><span></span><span></span><span></span></span>' +
-      '</div>' +
       '<div class="side-copy fade-enter">' +
         '<div class="side-arc kufi">' + arc.name + '</div>' +
         '<h2>' + arc.caption + '</h2>' +
@@ -972,17 +783,17 @@
     var map = {
       name:"Name", dob:"Date of birth", gender:"Gender", phone:"Mobile",
       email:"Email", location:"Neighbourhood", national:"UAE National",
-      travel:"Can travel", availability:"Availability", hours:"Hours per week",
+      travel:"Can travel", availability:"Availability",
       transport:"Own transport", experience:"Gahwa experience", training:"Hospitality training",
-      languages:"Languages", education:"Education", status:"Current status",
+      status:"Current status",
       motivation:"Why you're applying", referral:"Heard about us via"
     };
     return map[key] || key;
   }
 
   function reviewHtml(){
-    var order = ["national","dob","name","gender","phone","email","location","travel","availability","hours",
-      "transport","experience","training","languages","education","status","motivation","referral"];
+    var order = ["national","dob","name","gender","phone","email","location","travel","availability",
+      "transport","experience","training","status","motivation","referral"];
     var rows = "";
     order.forEach(function(key){
       var v = state.values[key];
@@ -1086,7 +897,6 @@
       overlay.className = "confirm-overlay";
       overlay.innerHTML =
         '<div class="confirm-modal fade-enter gate-modal">' +
-          '<div class="gate-modal-icon">' + ICON_FINJAN + '</div>' +
           '<h3>' + title + '</h3>' +
           '<p>' + message + '</p>' +
           '<div class="nav-row" style="margin-top:22px; justify-content:flex-end;">' +
@@ -1244,7 +1054,6 @@
       headerHtml(true) +
       '<main class="stage"><div class="landing" style="align-items:center;">' +
         '<div class="landing-inner confirm fade-enter">' +
-          '<div class="stamp" style="border-color:var(--cardamom);color:var(--cardamom);">' + ICON_FINJAN + '</div>' +
           '<h2>Your cup has been poured.</h2>' +
           '<p>Thank you for applying to Bait Al Gahwa. We read every application by hand — expect to hear from our team within two weeks.</p>' +
           '<p class="ref kufi">Reference ' + ref + '</p>' +

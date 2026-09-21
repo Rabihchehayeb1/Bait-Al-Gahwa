@@ -58,8 +58,8 @@ PUBLIC_DIR = BASE_DIR / "public"
 
 FIELDS = [
     "national", "dob", "name", "gender", "phone", "email", "location",
-    "travel", "availability", "hours", "transport", "experience", "training",
-    "languages", "education", "status", "motivation", "referral",
+    "travel", "availability", "transport", "experience", "training", "status",
+    "motivation", "referral",
 ]
 
 
@@ -476,16 +476,14 @@ def dashboard_page(rows):
 
 
 def detail_page(r):
-    languages = ", ".join(filter(None, (r["languages"] or "").split(",")))
     availability = ", ".join(filter(None, (r["availability"] or "").split(",")))
     fields = [
         ("Reference", r["reference"]), ("Received", r["created_at"]),
         ("UAE National", r["national"]), ("Date of birth", r["dob"]), ("Gender", r["gender"]),
         ("Mobile", r["phone"]), ("Email", r["email"]), ("Neighbourhood", r["location"]),
-        ("Can travel", r["travel"]), ("Availability", availability), ("Hours per week", r["hours"]),
+        ("Can travel", r["travel"]), ("Availability", availability),
         ("Own transport", r["transport"]), ("Gahwa experience", r["experience"]),
-        ("Hospitality training", r["training"]), ("Languages", languages),
-        ("Education", r["education"]), ("Current status", r["status"]),
+        ("Hospitality training", r["training"]), ("Current status", r["status"]),
         ("Heard about us via", r["referral"]),
     ]
     rows_html = "".join(
